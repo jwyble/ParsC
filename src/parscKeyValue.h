@@ -55,13 +55,13 @@ public:
 	// Construct a key/property with both a name and a value
 	ParsCKeyValue(const char* name, const char* value);
 	virtual ~ParsCKeyValue();
-	void setName(const char* name) {
+	ParsCKeyValue* setName(const char* name) {
 		_name = name;
 	}
 	const char* getName() const {
 		return _name.c_str();
 	}
-	void setValue(const char* value) {
+	ParsCKeyValue* setValue(const char* value) {
 		_value = value;
 	}
 	const char* getValue() const {
@@ -75,9 +75,6 @@ public:
 		return _sectionName;
 	}
 	const ParsCSection* sectionName(const char* value) const;
-	ParsCSection* sectionName(const char* value) {
-		return const_cast<ParsCSection*>((const_cast<const ParsCSection*>(this))->sectionName(value));
-	}
 	const char* name(const char* n) const;
 	const char* name(const char* n, int* i) const;
 	const char* name(const char* n, double* d) const;
