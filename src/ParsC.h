@@ -37,14 +37,14 @@
 #include "parscParser.h"
 #endif
 
-#ifndef INCLUDE_IOSTREAM
-#include <iostream>
-#define INCLUDE_IOSTREAM
-#endif
-
 #ifndef INCLUDE_STRING
 #include <string>
 #define INCLUDE_STRING
+#endif
+
+#ifndef INCLUDE_IOSTREAM
+#include <iostream>
+#define INCLUDE_IOSTREAM
 #endif
 
 #ifdef _MSC_VER
@@ -142,8 +142,11 @@ public:
 	ParsCConfig();
 	~ParsCConfig();
 	void clear();
-	void setValue(const char* value) {
+	ParsCKeyValue* setValue(std::string value) {
 		_value = value;
+	}
+	std::string getValue() const {
+		return _value;
 	}
 	ParsCConfig* parent() {
 		return _parent;
@@ -163,7 +166,7 @@ public:
 	}
 private:
 	ParsCConfig(const ParsCConfig&);
-	void operator=(const ParsCConfig& config);
+	void operator=(const ParsCConfig& base);
 protected:
 	ParsCConfig(ConfigType type);
 	void copyTo(ParsCConfig* target) const;
